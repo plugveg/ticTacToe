@@ -8,6 +8,16 @@ X = "X"
 O = "O"
 EMPTY = None
 
+# création objet jeu et board
+
+
+class Game:
+    def __init__(self):
+        self.jeu = "feur"
+        self.board = [[EMPTY, EMPTY, EMPTY],
+                      [EMPTY, EMPTY, EMPTY],
+                      [EMPTY, EMPTY, EMPTY]]
+
 
 def initial_state():
     """
