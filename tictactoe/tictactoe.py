@@ -10,25 +10,22 @@ EMPTY = None
 
 # création objet jeu et board
 
-
-class Game:
-    def __init__(self):
-        self.jeu = "feur"
-        self.board = [[EMPTY, EMPTY, EMPTY],
-                      [EMPTY, EMPTY, EMPTY],
-                      [EMPTY, EMPTY, EMPTY]]
-
-
 def initial_state():
     """
     Returns starting state of the board.
     """
-    return [[EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY]]
+    class Game:
+        def __init__(self):
+            self.numtour = 0
+            self.playertour = X
+            self.board = [[EMPTY, EMPTY, EMPTY],
+                        [EMPTY, EMPTY, EMPTY],
+                        [EMPTY, EMPTY, EMPTY]]
+
+    return Game.board
 
 
-def player(board):
+def player(board, playertour, numtour):
     """
     Returns player who has the next turn on a board.
     """
