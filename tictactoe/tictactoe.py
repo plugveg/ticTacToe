@@ -8,7 +8,6 @@ X = "X"
 O = "O"
 EMPTY = None
 
-
 def initial_state():
     """
     Returns starting state of the board.
@@ -22,6 +21,23 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
+    # compter le nombre de X et de O
+    # si X > O alors O joue
+    # si X = O alors X joue
+
+    # parcourir le board
+    X_count = 0
+    O_count = 0
+
+    for x in board:
+        for y in x:
+            if y == X:
+                X_count += 1
+            elif y == O:
+                O_count += 1
+
+    return X if X_count == O_count else O
+
     raise NotImplementedError
 
 
