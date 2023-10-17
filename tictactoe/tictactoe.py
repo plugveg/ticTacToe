@@ -56,6 +56,14 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
+    liste_tuples = []
+    for x in board:
+        for y in x:
+            if board[x][y] == EMPTY:
+                liste_tuples += (x, y)
+
+    return liste_tuples
+
     raise NotImplementedError
 
 
