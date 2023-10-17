@@ -44,7 +44,12 @@ def player(board, playertour, numtour):
             elif y == O:
                 O_count += 1
 
-    return X if X_count == O_count else O
+    numtour = X_count + O_count
+
+    if X_count == O_count:
+        return playertour
+    else:
+        return playertour == O
 
     raise NotImplementedError
 
