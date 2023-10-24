@@ -10,6 +10,7 @@ EMPTY = None
 
 # création objet jeu et board
 
+
 def initial_state():
     """
     Returns starting state of the board.
@@ -19,8 +20,8 @@ def initial_state():
             self.numtour = 0
             self.playertour = X
             self.board = [[EMPTY, EMPTY, EMPTY],
-                        [EMPTY, EMPTY, EMPTY],
-                        [EMPTY, EMPTY, EMPTY]]
+                          [EMPTY, EMPTY, EMPTY],
+                          [EMPTY, EMPTY, EMPTY]]
 
     return Game.board
 
@@ -109,4 +110,19 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
+    def max_value(board):
+        if terminal(board):
+            return utility(board)
+        v = float("-inf")
+        for action in actions(board):
+            v = max(v, min_value(result(board, action)))
+        return v
+
+    def min_value(board):
+        if terminal(board):
+            return utility(board)
+        v = float("inf")
+        for action in actions(board):
+            v = min(v, max_value(result(board, action)))
+        return v
     raise NotImplementedError
