@@ -73,6 +73,14 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
+    new_board = []
+    for row in board:
+        new_row = []
+        for cell in row:
+            new_row.append(cell)
+        new_board.append(new_row)
+    new_board[action[0]][action[1]] = player(board)
+    return new_board
     raise NotImplementedError
 
 
