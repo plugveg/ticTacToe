@@ -43,6 +43,24 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
+    winner=None
+    for i in range(3):
+        if numberOfPlayerMovesOnLine(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnLine(board, O, i)==3:
+            winner=O
+        elif numberOfPlayerMovesOnCol(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnCol(board, O, i)==3:
+            winner=O
+    for i in range(2):
+        if numberOfPlayerMovesOnDiag(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnDiag(board, O, i)==3:
+            winner=O
+    return winner
+
+
     raise NotImplementedError
 
 
@@ -64,4 +82,26 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    raise NotImplementedError
+def numberOfPlayerMovesOnLine(board, player, l):
+    count=0
+    for i in range(3): 
+        if board[l][i]== player: 
+            count+=1
+    return count 
+
+def numberOfPlayerMovesOnCol(board , player , c): 
+    count=0
+    for i in range(3):
+        if board[i][c]== player: 
+            count+=1
+    return count 
+
+
+def numberOfPlayerMovesOnDiag(board , player , dia):
+    offset=0
+    if dia ==0 :
+        offset=2
+    for i in range(3):
+        if board[i][-offset+i]== player: 
+            count+=1
+    return count 
