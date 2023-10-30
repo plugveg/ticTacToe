@@ -18,7 +18,7 @@ def initial_state():
             [EMPTY, EMPTY, EMPTY]]
 
 
-def player(board, playertour, numtour):
+def player(board):
     """
     Returns player who has the next turn on a board.
     """
@@ -37,12 +37,10 @@ def player(board, playertour, numtour):
             elif y == O:
                 O_count += 1
 
-    numtour = X_count + O_count
-
     if X_count == O_count:
-        return playertour
+        return X
     else:
-        return playertour == O
+        return O
 
     raise NotImplementedError
 
@@ -115,6 +113,13 @@ def utility(board):
     """
     Returns 1 if X has won the game, -1 if O has won, 0 otherwise.
     """
+    win = winner(board)
+    if win == X:
+        return 1
+    elif win == O:
+        return -1
+    else:
+        return 0
     raise NotImplementedError
 
 
