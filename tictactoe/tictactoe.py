@@ -88,11 +88,10 @@ def winner(board):
             winner=X
         elif numberOfPlayerMovesOnCol(board, O, i)==3:
             winner=O
-    for i in range(2):
-        if numberOfPlayerMovesOnDiag(board, X, i)==3:
-            winner=X
-        elif numberOfPlayerMovesOnDiag(board, O, i)==3:
-            winner=O
+    if numberOfPlayerMovesOnDiag(board, X)==3 or numberOfPlayerMovesOnOtherDiag(board, X)==3:
+        winner=X
+    elif numberOfPlayerMovesOnDiag(board, O)==3 or numberOfPlayerMovesOnOtherDiag(board, O)==3:
+        winner=O
     return winner
     raise NotImplementedError
 
@@ -111,15 +110,19 @@ def numberOfPlayerMovesOnCol(board , player , c):
     return count 
 
 
-def numberOfPlayerMovesOnDiag(board , player , dia):
-    offset=0
+def numberOfPlayerMovesOnDiag(board , player ):
     count=0
-    if dia ==0 :
-        offset=2
     for i in range(3):
-        if board[i][-offset+i]== player: 
+        if board[i][i]== player: 
             count+=1
     return count 
+def numberOfPlayerMovesOnOtherDiag(board , player ):
+    count=0
+    for i in range(3):
+        if board[i][2-i]== player: 
+            count+=1
+    return count
+
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
