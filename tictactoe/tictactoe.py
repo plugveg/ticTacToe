@@ -146,7 +146,7 @@ def minimax(board):
     Returns the optimal action for the current player on the board.
     """
 
-    if player(board, X, 0) == X:
+    if player(board) == X:
         v = float("-inf")
         best_action = None
         for action in actions(board):
