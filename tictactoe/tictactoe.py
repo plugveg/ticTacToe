@@ -1,8 +1,8 @@
 """
 Tic Tac Toe Player
+Eliott Garnier, Enzo Chavalier, Jean Barbet, Thomas Siest
 """
 
-import math
 
 X = "X"
 O = "O"
@@ -41,8 +41,6 @@ def player(board):
     else:
         return O
 
-    raise NotImplementedError
-
 
 def actions(board):
     """
@@ -55,8 +53,6 @@ def actions(board):
                 liste_tuples.append((i, j))
 
     return liste_tuples
-
-    raise NotImplementedError
 
 
 def result(board, action):
@@ -71,55 +67,48 @@ def result(board, action):
         new_board.append(new_row)
     new_board[action[0]][action[1]] = player(board)
     return new_board
-    raise NotImplementedError
+
+
+def check_rows(board, player):
+    """
+    Check if the player has won on the rows
+    """
+    for i in range(3):
+        if all(board[i][j] == player for j in range(3)):
+            return True
+    return False
+
+
+def check_columns(board, player):
+    """
+    Check if the player has won on the columns
+    """
+    for i in range(3):
+        if all(board[j][i] == player for j in range(3)):
+            return True
+    return False
+
+
+def check_diagonals(board, player):
+    """
+    Check if the player has won on the diagonals
+    """
+    if all(board[i][i] == player for i in range(3)) or all(board[i][2 - i] == player for i in range(3)):
+        return True
+    return False
 
 
 def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    winner=None
-    for i in range(3):
-        if numberOfPlayerMovesOnLine(board, X, i)==3:
-            winner=X
-        elif numberOfPlayerMovesOnLine(board, O, i)==3:
-            winner=O
-        elif numberOfPlayerMovesOnCol(board, X, i)==3:
-            winner=X
-        elif numberOfPlayerMovesOnCol(board, O, i)==3:
-            winner=O
-    for i in range(2):
-        if numberOfPlayerMovesOnDiag(board, X, i)==3:
-            winner=X
-        elif numberOfPlayerMovesOnDiag(board, O, i)==3:
-            winner=O
-    return winner
-    raise NotImplementedError
-
-def numberOfPlayerMovesOnLine(board, player, l):
-    count=0
-    for i in range(3): 
-        if board[l][i]== player: 
-            count+=1
-    return count 
-
-def numberOfPlayerMovesOnCol(board , player , c): 
-    count=0
-    for i in range(3):
-        if board[i][c]== player: 
-            count+=1
-    return count 
+    for player in ['X', 'O']:
+        if check_rows(board, player) or check_columns(board, player) or check_diagonals(board, player):
+            return player
+    return None
 
 
-def numberOfPlayerMovesOnDiag(board , player , dia):
-    offset=0
-    count=0
-    if dia ==0 :
-        offset=2
-    for i in range(3):
-        if board[i][-offset+i]== player: 
-            count+=1
-    return count 
+
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
@@ -132,7 +121,6 @@ def terminal(board):
             return False
 
     return True
-    raise NotImplementedError
 
 
 def utility(board):
@@ -146,7 +134,6 @@ def utility(board):
         return -1
     else:
         return 0
-    raise NotImplementedError
 
 
 def max_value(board):
@@ -190,4 +177,3 @@ def minimax(board):
                 v = max_val
                 best_action = action
         return best_action
-    raise NotImplementedError
