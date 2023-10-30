@@ -26,7 +26,6 @@ def player(board):
     # si X > O alors O joue
     # si X = O alors X joue
 
-    # parcourir le board
     X_count = 0
     O_count = 0
 
@@ -50,10 +49,10 @@ def actions(board):
     Returns set of all possible actions (i, j) available on the board.
     """
     liste_tuples = []
-    for x in board:
-        for y in x:
-            if board[x][y] == EMPTY:
-                liste_tuples += (x, y)
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == EMPTY:
+                liste_tuples.append((i, j))
 
     return liste_tuples
 
