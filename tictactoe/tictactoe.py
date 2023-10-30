@@ -8,14 +8,6 @@ X = "X"
 O = "O"
 EMPTY = None
 
-# création objet jeu et board
-
-
-class Game:
-    def __init__(self):
-        self.numtour = 0
-        self.playertour = X
-
 
 def initial_state():
     """
