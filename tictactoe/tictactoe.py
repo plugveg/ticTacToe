@@ -78,21 +78,48 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
+    winner=None
     for i in range(3):
-        if board[i][0] == board[i][1] == board[i][2] and board[i][0] is not None:
-            return board[i][0]
-        if board[0][i] == board[1][i] == board[2][i] and board[0][i] is not None:
-            return board[0][i]
-
-    if board[0][0] == board[1][1] == board[2][2] and board[0][0] is not None:
-        return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
-        return board[0][2]
-
-    return None
+        if numberOfPlayerMovesOnLine(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnLine(board, O, i)==3:
+            winner=O
+        elif numberOfPlayerMovesOnCol(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnCol(board, O, i)==3:
+            winner=O
+    for i in range(2):
+        if numberOfPlayerMovesOnDiag(board, X, i)==3:
+            winner=X
+        elif numberOfPlayerMovesOnDiag(board, O, i)==3:
+            winner=O
+    return winner
     raise NotImplementedError
 
+def numberOfPlayerMovesOnLine(board, player, l):
+    count=0
+    for i in range(3): 
+        if board[l][i]== player: 
+            count+=1
+    return count 
 
+def numberOfPlayerMovesOnCol(board , player , c): 
+    count=0
+    for i in range(3):
+        if board[i][c]== player: 
+            count+=1
+    return count 
+
+
+def numberOfPlayerMovesOnDiag(board , player , dia):
+    offset=0
+    count=0
+    if dia ==0 :
+        offset=2
+    for i in range(3):
+        if board[i][-offset+i]== player: 
+            count+=1
+    return count 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
